@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOUNDING BOX SIMULATOR</title>
+    <style>
+        body { margin: 0; background: #121212; color: #e0e0e0; font-family: monospace; overflow: hidden; }
+        #ui {
+            position: absolute; top: 10px; left: 10px; background: rgba(30, 30, 30, 0.9);
+            padding: 15px; border-radius: 8px; border: 1px solid #444; width: 320px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); z-index: 10;
+        }
+        .control-group { margin-bottom: 10px; }
+        label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px; }
+        input[type="range"], input[type="number"] { width: 100%; background: #222; color: #00ffcc; border: 1px solid #555; padding: 3px; }
+        .output-box { background: #181818; padding: 10px; border-radius: 5px; margin-top: 12px; border: 1px solid #333; font-size: 12px; }
+        .highlight { color: #00ffcc; font-weight: bold; }
+        #instructions { position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); padding: 8px 12px; border-radius: 5px; font-size: 11px; color: #aaa; pointer-events: none; }
+    </style>
+
+    <!-- Import map to load Three.js via ES Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/"
+        }
+      }
+    </script>
+</head>
+<body>
+    <div id="ui">
+        <h3 style="margin-top:0; color:#fff;">BOUNDING BOX SIMULATOR</h3>
+        <div class="control-group">
+            <label>Sphere Radius (r): <span id="r-val">2.0</span></label>
+            <input type="range" id="r-input" min="0.5" max="10.0" step="0.1" value="2.0">
+        </div>
+        <div class="output-box">
+            <div>PointA Pos   : <span id="pA-pos" class="highlight">-</span></div>
+            <div>PointB Pos   : <span id="pB-pos" class="highlight">-</span></div>
+            <div>Sphere Center: <span id="sc-pos" class="highlight">-</span></div>
+            <div>TMIN - TMAX: <span id="t-vals" class="highlight">-</span></div>
+        </div>
+    </div>
+
+    <div id="instructions">Left-click + drag to rotate | Scroll to zoom | Press T to toggle target | Press W to toggle material</div>
+
+    <!-- Entry point script marked as a module -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>
